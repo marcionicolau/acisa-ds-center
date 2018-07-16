@@ -12,30 +12,43 @@ USERNAME_PASSWORD_PAIRS = [
     ['JamesBond', '007']
 ]
 
+colors = {
+    'background': '#111111',
+    'text': '#7FDBFF'
+}
+
+
 app = dash.Dash()
 auth = dash_auth.BasicAuth(app, USERNAME_PASSWORD_PAIRS)
 server = app.server
 
 app.layout = html.Div([
-    html.Div([
-        html.Iframe(src='https://www.flightradar24.com',
-                    height=500, width=1200)
-    ]),
-    html.Div([
-        html.Pre(
-            id='counter_text',
-            children='Active flights worldwide:'
-        ),
-        dcc.Graph(
-            id='live-update-graph',
-            style={'width': 1200}
-        ),
-        dcc.Interval(
-            id='interval-component',
-            interval=6000,  # 6000 milliseconds = 6 seconds
-            n_intervals=0
-        )
-    ]),
+    html.H1(
+        children='Repositório de Dados',
+        style=dict(textAlign='center')
+    ),
+    html.Div(
+        children='Dash: A web application framework for Python.',
+        style=dict(textAlign='center', color=colors['text'])
+    ),
+    dcc.Graph(
+        id='example-graph-2',
+        figure={
+            'data': [
+                {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar', 'name': 'SF'},
+                {'x': [1, 2, 3], 'y': [2, 4, 5],
+                    'type': 'bar', 'name': u'Montréal'},
+            ],
+            'layout': {
+                'plot_bgcolor': colors['background'],
+                'paper_bgcolor': colors['background'],
+                'font': {
+                    'color': colors['text']
+                }
+            }
+        }
+    )
+
     dcc.RangeSlider(
         id='range-slider',
         min=-5,
