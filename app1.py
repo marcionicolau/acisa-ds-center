@@ -3,7 +3,7 @@ import dash_auth
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
-import requests
+import pandas as pd
 
 from dash.dependencies import Input, Output
 
@@ -16,6 +16,24 @@ colors = {
     'background': '#111111',
     'text': '#7FDBFF'
 }
+
+df = pd.read_csv(
+    'https://gist.githubusercontent.com/chriddyp/' +
+    '5d1ea79569ed194d432e56108a04d188/raw/' +
+    'a9f9e8076b837d541398e999dcbac2b2826a81f8/' +
+    'gdp-life-exp-2007.csv')
+
+
+def generate_table(dataframe, max_rows=10):
+    return html.Table(
+        # Header
+        [html.Tr([html.Th(col) for col in dataframe.columns])] +
+
+        # Body
+        [html.Tr([
+            html.Td(dataframe.iloc[i][col]) for col in dataframe.columns
+        ]) for i in range(min(len(dataframe), max_rows))]
+    )
 
 
 app = dash.Dash()
@@ -47,7 +65,7 @@ app.layout = html.Div([
                 }
             }
         }
-    )
+    ),
 
     dcc.RangeSlider(
         id='range-slider',
@@ -56,37 +74,40 @@ app.layout = html.Div([
         marks={i: str(i) for i in range(-5, 7)},
         value=[-3, 4]
     ),
-    html.H1(id='product')  # this is the output
+    html.H1(id='product'),  # this is the output
+    html.Div([
+        html.H4('GDP Per Capta'),
+        generate_table(df),
+        dcc.Graph(
+            id='life-exp-vs-gdp',
+            figure={
+                'data': [
+                    go.Scatter(
+                        x=df[df['continent'] == i]['gdp per capita'],
+                        y=df[df['continent'] == i]['life expectancy'],
+                        text=df[df['continent'] == i]['country'],
+                        mode='markers',
+                        opacity=0.7,
+                        marker={
+                            'size': 15,
+                            'line': {'width': 0.5, 'color': 'white'}
+                        },
+                        name=i
+                    ) for i in df.continent.unique()
+                ],
+                'layout': go.Layout(
+                    xaxis={'type': 'log', 'title': 'GDP Per Capita'},
+                    yaxis={'title': 'Life Expectancy'},
+                    margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
+                    legend={'x': 0, 'y': 1},
+                    hovermode='closest'
+                )
+            }
+        )
+    ])
 ], style={'width': '50%'})
 
 counter_list = []
-
-
-@app.callback(Output('counter_text', 'children'),
-              [Input('interval-component', 'n_intervals')])
-def update_layout(n):
-    url = "https://data-live.flightradar24.com/zones/fcgi/feed.js?faa=1\
-           &mlat=1&flarm=1&adsb=1&gnd=1&air=1&vehicles=1&estimated=1&stats=1"
-    # A fake header is necessary to access the site:
-    res = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
-    data = res.json()
-    counter = 0
-    for element in data["stats"]["total"]:
-        counter += data["stats"]["total"][element]
-    counter_list.append(counter)
-    return 'Active flights worldwide: {}'.format(counter)
-
-
-@app.callback(Output('live-update-graph', 'figure'),
-              [Input('interval-component', 'n_intervals')])
-def update_graph(n):
-    fig = go.Figure(
-        data=[go.Scatter(
-            x=list(range(len(counter_list))),
-            y=counter_list,
-            mode='lines+markers'
-        )])
-    return fig
 
 
 @app.callback(
