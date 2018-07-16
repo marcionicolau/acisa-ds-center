@@ -12,7 +12,7 @@ USERNAME_PASSWORD_PAIRS = [
 
 app = dash.Dash()
 auth = dash_auth.BasicAuth(app, USERNAME_PASSWORD_PAIRS)
-server = app.server()
+server = app.server
 
 app.layout = html.Div([
     dcc.RangeSlider(
