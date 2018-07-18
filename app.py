@@ -7,11 +7,9 @@ import dash
 import dash_auth
 import dash_core_components as dcc
 import dash_html_components as html
-import pandas as pd
-import plotly.graph_objs as go
-from dash.dependencies import Event, Input, Output, State
+from dash.dependencies import Input, Output
 from flask import Flask
-from DashContents import main_components, main_layout
+from DashData import main_layout
 
 USERNAME_PASSWORD_PAIRS = [
     ['Administrator', 'adm123'],
@@ -33,8 +31,8 @@ app.layout = html.Div([
 
 
 # Update page
-@app.callback(dash.dependencies.Output('page-content', 'children'),
-              [dash.dependencies.Input('url', 'pathname')])
+@app.callback(Output('page-content', 'children'),
+              [Input('url', 'pathname')])
 def display_page(pathname):
     if pathname == '/' or pathname == '/overview':
         return main_layout.overview
