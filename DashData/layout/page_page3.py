@@ -2,8 +2,8 @@
 
 import dash_html_components as html
 import dash_core_components as dcc
-from DashData.components.layout import (page_header, make_dash_table,
-                                        print_button)
+from DashData.components.layout import (page_contents,
+                                        make_dash_table)
 
 from DashData.datasets.all_data import (df_equity_char, df_equity_diver)
 
@@ -287,13 +287,19 @@ def page_page3_row4():
 
 
 def page_page3_content():
-    return html.Div([
-        print_button(),
-        html.Div([
-            page_header(),
-            page_page3_row1(),
-            page_page3_row2(),
-            page_page3_row3(),
-            page_page3_row4(),
-        ], className="subpage")
-    ], className="page")
+    return page_contents([
+        page_page3_row1(),
+        page_page3_row2(),
+        page_page3_row3(),
+        page_page3_row4(),
+    ])
+    # return html.Div([
+    #     print_button(),
+    #     html.Div([
+    #         page_header(),
+    #         page_page3_row1(),
+    #         page_page3_row2(),
+    #         page_page3_row3(),
+    #         page_page3_row4(),
+    #     ], className="subpage")
+    # ], className="page")

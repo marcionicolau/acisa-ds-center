@@ -2,8 +2,9 @@
 
 import dash_html_components as html
 import dash_core_components as dcc
-from DashData.components.layout import (make_dash_table, print_button,
-                                        page_header)
+from DashData.components.layout import (make_dash_table,
+                                        page_contents)
+
 from DashData.datasets.all_data import df_fund_facts, df_price_perf
 import plotly.graph_objs as go
 
@@ -373,12 +374,15 @@ def page_overview_row5():
 
 
 def page_overview_content():
-    return html.Div([
-        print_button(),
-        html.Div([
-            page_header(),
-            page_overview_row3(),
-            page_overview_row4(),
-            page_overview_row5()
-        ], className="subpage")
-    ], className="page")
+    return page_contents([page_overview_row3(),
+                          page_overview_row4(),
+                          page_overview_row5()])
+    # return html.Div([
+    #     print_button(),
+    #     html.Div([
+    #         page_header(),
+    #         page_overview_row3(),
+    #         page_overview_row4(),
+    #         page_overview_row5()
+    #     ], className="subpage")
+    # ], className="page")

@@ -2,8 +2,8 @@
 
 import dash_html_components as html
 import dash_core_components as dcc
-from DashData.components.layout import (page_header, make_dash_table,
-                                        print_button)
+from DashData.components.layout import (page_contents,
+                                        make_dash_table)
 from DashData.datasets.all_data import (df_current_prices, df_hist_prices,
                                         df_graph, df_avg_returns, df_after_tax,
                                         df_recent_returns)
@@ -165,14 +165,21 @@ def page_page2_row5():
 
 
 def page_page2_content():
-    return html.Div([
-        print_button(),
-        html.Div([
-            page_header(),
-            page_page2_row1(),
-            page_page2_row2(),
-            page_page2_row3(),
-            page_page2_row4(),
-            page_page2_row5(),
-        ], className="subpage")
-    ], className="page")
+    return page_contents([
+        page_page2_row1(),
+        page_page2_row2(),
+        page_page2_row3(),
+        page_page2_row4(),
+        page_page2_row5(),
+    ])
+    # return html.Div([
+    #     print_button(),
+    #     html.Div([
+    #         page_header(),
+    #         page_page2_row1(),
+    #         page_page2_row2(),
+    #         page_page2_row3(),
+    #         page_page2_row4(),
+    #         page_page2_row5(),
+    #     ], className="subpage")
+    # ], className="page")

@@ -2,8 +2,8 @@
 
 import dash_html_components as html
 import dash_core_components as dcc
-from DashData.components.layout import (page_header, make_dash_table,
-                                        print_button)
+from DashData.components.layout import (page_contents,
+                                        make_dash_table)
 from DashData.datasets.all_data import (df_expenses, df_minimums)
 
 import plotly.graph_objs as go
@@ -225,12 +225,17 @@ def page_page4_row3():
 
 
 def page_page4_content():
-    return html.Div([
-        print_button(),
-        html.Div([
-            page_header(),
-            page_page4_row1(),
-            page_page4_row2(),
-            page_page4_row3()
-        ], className="subpage")
-    ], className="page")
+    return page_contents([
+        page_page4_row1(),
+        page_page4_row2(),
+        page_page4_row3()
+    ])
+    # return html.Div([
+    #     print_button(),
+    #     html.Div([
+    #         page_header(),
+    #         page_page4_row1(),
+    #         page_page4_row2(),
+    #         page_page4_row3()
+    #     ], className="subpage")
+    # ], className="page")

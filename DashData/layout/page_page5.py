@@ -1,8 +1,8 @@
 # enconding: utf-8
 
 import dash_html_components as html
-from DashData.components.layout import (page_header, make_dash_table,
-                                        print_button)
+from DashData.components.layout import (page_contents,
+                                        make_dash_table)
 
 from DashData.datasets.all_data import (
     df_dividend, df_realized, df_unrealized)
@@ -52,13 +52,19 @@ def page_page5_row4():
 
 
 def page_page5_content():
-    return html.Div([
-        print_button(),
-        html.Div([
-            page_header(),
-            page_page5_row1(),
-            page_page5_row2(),
-            page_page5_row3(),
-            page_page5_row4()
-        ], className="subpage")
-    ], className="page")
+    return page_contents([
+        page_page5_row1(),
+        page_page5_row2(),
+        page_page5_row3(),
+        page_page5_row4()
+    ])
+    # return html.Div([
+    #     print_button(),
+    #     html.Div([
+    #         page_header(),
+    #         page_page5_row1(),
+    #         page_page5_row2(),
+    #         page_page5_row3(),
+    #         page_page5_row4()
+    #     ], className="subpage")
+    # ], className="page")

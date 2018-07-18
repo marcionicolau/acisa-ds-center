@@ -1,8 +1,7 @@
 # enconding: utf-8
 
 import dash_html_components as html
-from DashData.components.layout import (page_header,
-                                        print_button)
+from DashData.components.layout import page_contents
 
 
 def page_page6_row1():
@@ -48,11 +47,14 @@ def page_page6_row1():
 
 
 def page_page6_content():
-    return html.Div([  # page 6
-        print_button(),
-        html.Div([
-            page_header(),
-            page_page6_row1()
-        ], className="subpage")
+    return page_contents([
+        page_page6_row1()
+    ])
+    # return html.Div([  # page 6
+    #     print_button(),
+    #     html.Div([
+    #         page_header(),
+    #         page_page6_row1()
+    #     ], className="subpage")
 
-    ], className="page")
+    # ], className="page")

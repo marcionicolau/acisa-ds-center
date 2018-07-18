@@ -82,3 +82,20 @@ def print_button():
                       top='-40',
                       right='0'
     ))
+
+
+def page_header():
+    return [
+        get_logo(),
+        get_header(),
+        html.Br([]),
+        get_menu()
+    ]
+
+
+def page_contents(content):
+    pg_content = content.insert(0, page_header())
+    return html.Div([
+        print_button(),
+        html.Div(pg_content, className="subpage")
+    ], className="page")
