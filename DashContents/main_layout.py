@@ -31,7 +31,7 @@ def get_logo():
 
         html.Div([
             html.Img(src='http://www.acisa.org.br/wp-content/uploads/2016/12/acisa_logo1-1.png',
-                     height='40', width='160')
+                     height='40', width='130')
         ], className="ten columns padded"),
 
         html.Div([
@@ -46,7 +46,7 @@ def get_header():
     header = html.Div([
 
         html.Div([
-            html.H5(u'ACISA - Central de dados e estatísticas municipais'),
+            html.H5(u'ACISA - Central de Dados e Estatísticas sobre o Município'),
             html.H6(u'Passo Fundo/RS'),
         ], className="twelve columns padded"),
     ], className="row gs-header gs-text-header")
@@ -90,22 +90,18 @@ overview = html.Div([  # page 1
         html.Div([
 
             html.Div([
-                html.H6('Product Summary',
+                html.H6(u"Apresentação",
                         className="gs-header gs-text-header padded"),
 
                 html.Br([]),
 
                 html.P("\
-                            As the industry’s first index fund for individual investors, \
-                            the 500 Index Fund is a low-cost way to gain diversified exposure \
-                            to the U.S. equity market. The fund offers exposure to 500 of the \
-                            largest U.S. companies, which span many different industries and \
-                            account for about three-fourths of the U.S. stock market’s value. \
-                            The key risk for the fund is the volatility that comes with its full \
-                            exposure to the stock market. Because the 500 Index Fund is broadly \
-                            diversified within the large-capitalization market, it may be \
-                            considered a core equity holding in a portfolio."),
-
+                            Passo Fundo é a maior cidade do Norte do Rio Grande do Sul e a 6ª maior economia do Estado. \
+                            Considerada cidade média, tem população estimada pelo IBGE (2017) em 198.799 habitantes. \
+                            O valor total do PIB alcançou os R$7,8 bilhões e a renda per capita é de R$ 39.737,73. \
+                            Os dados são relativos ao ano de 2015. A cidade é conhecida como \"Capital do Planalto Médio\", \
+                            \"Capital Nacional da Literatura\" e \"Capital do Norte\". Possui um grande número de edifícios, \
+                            sendo uma das cidades mais densas do Estado.")
             ], className="six columns"),
 
             html.Div([
