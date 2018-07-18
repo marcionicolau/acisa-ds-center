@@ -1,11 +1,14 @@
+import os
+from random import randint
+
 import dash
 import dash_auth
 import dash_core_components as dcc
 import dash_html_components as html
-import plotly.graph_objs as go
 import pandas as pd
-
-from dash.dependencies import Input, Output
+import plotly.graph_objs as go
+from dash.dependencies import Event, Input, Output, State
+from flask import Flask
 
 USERNAME_PASSWORD_PAIRS = [
     ['Administrator', 'adm123'],
@@ -36,18 +39,23 @@ def generate_table(dataframe, max_rows=10):
     )
 
 
-app = dash.Dash()
+# Setup app
+server = Flask(__name__)
+server.secret_key = os.environ.get('secret_key', str(randint(0, 1000000)))
+app = dash.Dash(__name__, server=server)
 auth = dash_auth.BasicAuth(app, USERNAME_PASSWORD_PAIRS)
 server = app.server
 
 app.layout = html.Div([
     html.H1(
-        children='Repositório de Dados',
+        children=u'Portal de Dados',
+        className="ui header",
         style=dict(textAlign='center')
     ),
     html.Div(
-        children='Dash: A web application framework for Python.',
-        style=dict(textAlign='center', color=colors['text'])
+        children=u'Dash: A web application framework for Python.',
+        className="sub header",
+        style=dict(textAlign="center")
     ),
     dcc.Graph(
         id='example-graph-2',
@@ -117,5 +125,15 @@ def update_value(value_list):
     return value_list[0]*value_list[1]
 
 
+lst_css = ["https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css"]
+
+lst_js = ["https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"]
+
+for css in lst_css:
+    app.css.append_css({"external_url": css})
+
+for js in lst_js:
+    app.scripts.append_script({"external_url": js})
+
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(debug=True, threaded=True)
