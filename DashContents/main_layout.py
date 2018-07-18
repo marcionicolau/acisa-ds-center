@@ -30,12 +30,12 @@ def get_logo():
     logo = html.Div([
 
         html.Div([
-            html.Img(src='http://logonoid.com/images/vanguard-logo.png',
+            html.Img(src='http://www.acisa.org.br/wp-content/uploads/2016/12/acisa_logo1-1.png',
                      height='40', width='160')
         ], className="ten columns padded"),
 
         html.Div([
-            dcc.Link('Full View   ', href='/full-view')
+            dcc.Link('Geral   ', href='/full-view')
         ], className="two columns page-view no-print")
 
     ], className="row gs-header")
