@@ -225,17 +225,8 @@ def page_page4_row3():
 
 
 def page_page4_content():
-    return page_contents([
+    return page_contents(
         page_page4_row1(),
         page_page4_row2(),
         page_page4_row3()
-    ])
-    # return html.Div([
-    #     print_button(),
-    #     html.Div([
-    #         page_header(),
-    #         page_page4_row1(),
-    #         page_page4_row2(),
-    #         page_page4_row3()
-    #     ], className="subpage")
-    # ], className="page")
+    )

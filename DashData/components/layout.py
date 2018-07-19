@@ -15,7 +15,7 @@ def get_logo():
                 height='40', width='130')
         ], className="ten columns padded"),
         html.Div([
-            dcc.Link('Geral   ', href='/full-view')
+            dcc.Link('Geral', href='/full-view')
         ], className="two columns page-view no-print")
     ], className="row gs-header")
     return logo
@@ -24,9 +24,8 @@ def get_logo():
 def get_header():
     return html.Div([
         html.Div([
-            html.H5(u'ACISA - Central de Dados e Estatísticas \
-            sobre o Município'),
-            html.H6(u'Passo Fundo/RS'),
+            html.H5(u'Central de Dados e Estatísticas \
+            sobre o Município de Passo Fundo/RS')
         ], className="twelve columns padded"),
     ], className="row gs-header gs-text-header")
 
@@ -93,9 +92,12 @@ def page_header():
     ]
 
 
-def page_contents(content):
-    pg_content = content.insert(0, page_header())
-    return html.Div([
+def page_contents(*content):
+    pg_content = page_header()
+    for ctn in content:
+        pg_content.append(ctn)
+    info = html.Div([
         print_button(),
         html.Div(pg_content, className="subpage")
     ], className="page")
+    return info

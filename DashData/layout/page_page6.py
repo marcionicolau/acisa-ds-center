@@ -47,14 +47,4 @@ def page_page6_row1():
 
 
 def page_page6_content():
-    return page_contents([
-        page_page6_row1()
-    ])
-    # return html.Div([  # page 6
-    #     print_button(),
-    #     html.Div([
-    #         page_header(),
-    #         page_page6_row1()
-    #     ], className="subpage")
-
-    # ], className="page")
+    return page_contents(page_page6_row1())

@@ -374,15 +374,8 @@ def page_overview_row5():
 
 
 def page_overview_content():
-    return page_contents([page_overview_row3(),
-                          page_overview_row4(),
-                          page_overview_row5()])
-    # return html.Div([
-    #     print_button(),
-    #     html.Div([
-    #         page_header(),
-    #         page_overview_row3(),
-    #         page_overview_row4(),
-    #         page_overview_row5()
-    #     ], className="subpage")
-    # ], className="page")
+    return page_contents(
+        page_overview_row3(),
+        page_overview_row4(),
+        page_overview_row5()
+    )

@@ -165,21 +165,10 @@ def page_page2_row5():
 
 
 def page_page2_content():
-    return page_contents([
+    return page_contents(
         page_page2_row1(),
         page_page2_row2(),
         page_page2_row3(),
         page_page2_row4(),
         page_page2_row5(),
-    ])
-    # return html.Div([
-    #     print_button(),
-    #     html.Div([
-    #         page_header(),
-    #         page_page2_row1(),
-    #         page_page2_row2(),
-    #         page_page2_row3(),
-    #         page_page2_row4(),
-    #         page_page2_row5(),
-    #     ], className="subpage")
-    # ], className="page")
+    )

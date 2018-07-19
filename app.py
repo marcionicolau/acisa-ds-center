@@ -57,7 +57,7 @@ def display_page(pathname):
         return main_layout.noPage
 
 
-lst_css = ["https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css",
+lst_css = ["https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css",
            'https://codepen.io/chriddyp/pen/bWLwgP.css',
            "https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css",
            "https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css",
@@ -65,8 +65,8 @@ lst_css = ["https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css
            "https://codepen.io/bcd/pen/KQrXdb.css",
            "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"]
 
-lst_js = ["https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js",
-          "https://code.jquery.com/jquery-3.2.1.min.js",
+lst_js = ["https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js",
           "https://codepen.io/bcd/pen/YaXojL.js"]
 
 for css in lst_css:
